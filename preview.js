@@ -1,5 +1,5 @@
 // 1.  CONFIGURE YOUR FREE API KEY HERE
-const API_KEY = 'YOUR_SERPSTACK_KEY';   // ← get it in 30 s: https://serpstack.com/product
+const API_KEY = '3915e87a44280c93b18be8c16feea323';   // ← get it in 30 s: https://serpstack.com/product
 
 const searchBox = document.getElementById('searchBox');
 const results   = document.getElementById('results');
