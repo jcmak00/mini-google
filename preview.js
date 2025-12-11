@@ -1,7 +1,6 @@
 // 1.  FREE TIER KEYS
 const SERP_KEY = '3915e87a44280c93b18be8c16feea323';               // ← your existing key
-const PROXY    = 'https://iframe-proxy.lyokato.dev'; // ← open-source proxy (free)
-const SS_KEY   = 'demo';                              // fallback screenshots
+const RENDER   = 'https://render.ntruly.com';        // ← free serverless render
 
 const box = document.getElementById('searchBox');
 const res = document.getElementById('results');
@@ -26,15 +25,11 @@ function makeCard(pageUrl, title) {
   card.className = 'card';
   card.innerHTML = `
     <div class="title"><a href="${pageUrl}" target="_blank" rel="noreferrer">${title}</a></div>
-    <iframe src="${PROXY}/?url=${encodeURIComponent(pageUrl)}"></iframe>
+    <iframe src="${RENDER}/?url=${encodeURIComponent(pageUrl)}&width=390&height=844&scroll=0&fresh=true"></iframe>
   `;
   res.appendChild(card);
-
-  const iframe = card.querySelector('iframe');
-  iframe.onerror = () => useScreenshot(card, pageUrl);          // network error
-  iframe.onload = () => {                                       // still blank? → screenshot
-    try { iframe.contentWindow.document; } catch { useScreenshot(card, pageUrl); }
-    setTimeout(() => {
+}
+setTimeout(() => {
       if (iframe.contentDocument && iframe.contentDocument.body.innerHTML.length < 200) useScreenshot(card, pageUrl);
     }, 2500);
   };
